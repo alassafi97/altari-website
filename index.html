@@ -546,20 +546,7 @@
     html.dark .aurora-3 { background: radial-gradient(ellipse 40% 30% at 30% 15%, rgba(80,40,200,.06) 0%, transparent 60%); }
 
     /* Grid overlay */
-    .hero-grid {
-      position: absolute;
-      inset: 0;
-      z-index: 0;
-      background-image: url("data:image/svg+xml,%3Csvg width='211' height='211' viewBox='-10 -10 71 71' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%235B5EC2' fill-opacity='0.07'%3E%3Cpath d='M14.5156 0H7.25781V7.25775H14.5156V0Z'/%3E%3Cpath d='M43.5458 0H36.2881V7.25775H43.5458V0Z'/%3E%3Cpath d='M21.7739 7.25586H14.5161V14.5136H21.7739V7.25586Z'/%3E%3Cpath d='M36.289 7.25586H29.0312V14.5136H36.289V7.25586Z'/%3E%3Cpath d='M14.5156 14.5127H7.25781V21.7704H14.5156V14.5127Z'/%3E%3Cpath d='M21.7739 14.5127H14.5161V21.7704H21.7739V14.5127Z'/%3E%3Cpath d='M29.0317 14.5127H21.7739V21.7704H29.0317V14.5127Z'/%3E%3Cpath d='M36.289 14.5127H29.0312V21.7704H36.289V14.5127Z'/%3E%3Cpath d='M43.5458 14.5127H36.2881V21.7704H43.5458V14.5127Z'/%3E%3Cpath d='M7.25775 21.7715H0V29.0292H7.25775V21.7715Z'/%3E%3Cpath d='M14.5156 21.7715H7.25781V29.0292H14.5156V21.7715Z'/%3E%3Cpath d='M29.0317 21.7715H21.7739V29.0292H29.0317V21.7715Z'/%3E%3Cpath d='M43.5458 21.7715H36.2881V29.0292H43.5458V21.7715Z'/%3E%3Cpath d='M50.8041 21.7715H43.5464V29.0292H50.8041V21.7715Z'/%3E%3Cpath d='M14.5156 29.0283H7.25781V36.2861H14.5156V29.0283Z'/%3E%3Cpath d='M21.7739 29.0283H14.5161V36.2861H21.7739V29.0283Z'/%3E%3Cpath d='M29.0317 29.0283H21.7739V36.2861H29.0317V29.0283Z'/%3E%3Cpath d='M36.289 29.0283H29.0312V36.2861H36.289V29.0283Z'/%3E%3Cpath d='M43.5458 29.0283H36.2881V36.2861H43.5458V29.0283Z'/%3E%3Cpath d='M14.5161 36.2861H21.7738V43.5438H14.5161V36.2861Z'/%3E%3Cpath d='M29.0312 36.2861H36.289V43.5438H29.0312V36.2861Z'/%3E%3Cpath d='M7.25781 43.5439H14.5155V50.8017H7.25781V43.5439Z'/%3E%3Cpath d='M36.2881 43.5439H43.5458V50.8017H36.2881V43.5439Z'/%3E%3C/g%3E%3C/svg%3E");
-      background-size: 34px 34px;
-      mask-image: radial-gradient(ellipse 85% 65% at 50% 0%, black 20%, transparent 80%);
-    }
-    html.dark .hero-grid {
-      background-image:
-        linear-gradient(rgba(255,255,255,.025) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,.025) 1px, transparent 1px);
-      background-size: 60px 60px;
-    }
+    .hero-grid { display: none; }
 
     .hero-inner {
       position: relative;
@@ -879,8 +866,8 @@
     }
     .marquee-item:hover { color: var(--foreground-muted); }
     .marquee-logo {
-      width: 28px; height: 28px;
-      border-radius: 6px;
+      width: 18px; height: 18px;
+      border-radius: 4px;
       object-fit: contain;
       opacity: .7;
       filter: none;
