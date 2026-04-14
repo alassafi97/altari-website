@@ -566,6 +566,19 @@
       padding: 5rem 0 7rem;
     }
 
+    .scroll-indicator {
+      display: flex;
+      justify-content: center;
+      margin-top: 2rem;
+      color: var(--foreground-muted);
+      opacity: .45;
+      animation: scroll-bounce 2s ease-in-out infinite;
+    }
+    @keyframes scroll-bounce {
+      0%, 100% { transform: translateY(0); opacity: .45; }
+      50%       { transform: translateY(6px); opacity: .75; }
+    }
+
     .hero-badge {
       display: inline-flex;
       align-items: center;
@@ -2165,6 +2178,13 @@
             </div><!-- /dash-main -->
           </div><!-- /dash-body -->
         </div><!-- /hero-dashboard -->
+
+        <div class="scroll-indicator">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M4 7L10 13L16 7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+
       </div>
     </div>
   </section>
@@ -2721,67 +2741,73 @@
   <!-- ── ASCII HERO BACKGROUND ────────────────────────────── -->
   <script>
   (function () {
-    const canvas = document.getElementById('ascii-bg');
-    if (!canvas) return;
-    const ctx = canvas.getContext('2d');
+    const CELL_W = 10;
+    const CELL_H = 18;
+    const FONT   = CELL_W + 'px "Monaco","Menlo","Consolas","Courier New",monospace';
+    const CHARS  = [' ', '░', '▒', '▓', '█'];
 
-    // ── config ──────────────────────────────────────────────
-    const CELL_W   = 14;          // px per character column
-    const CELL_H   = 26;          // px per character row  (~2:1 aspect)
-    const FONT     = CELL_W + 'px "Monaco","Menlo","Consolas","Courier New",monospace';
-    const CHARS    = [' ', '░', '▒', '▓', '█'];
-    const N        = CHARS.length - 1;
-    const THRESHOLD = 0.20;       // noise values below this render as blank
-
-    // Altari brand gradient: deep-purple → brand-indigo → accent-blue
     const STOPS = [
-      [61,  44,  141],   // #3D2C8D
-      [91,  94,  194],   // --primary-cta
-      [72, 130,  230],   // mid
-      [45, 130,  254],   // --accent
+      [ 10,  22,  58],
+      [ 22,  58, 110],
+      [ 38, 100, 152],
+      [ 68, 152, 185],
+      [155, 210, 228],
+      [220, 238, 245],
     ];
-
-    let t   = 0;
-    let raf = null;
-    let alive = true;
-
-    // ── noise: layered sinusoids → smooth organic flow ──────
-    function noise(cx, cy, time) {
-      // Column-phased vertical "data streams" + diagonal drift
-      const p = cx * 0.85 + cy * 0.15;
-      const q = cy * 0.55 + cx * 0.20;
-      return (
-        Math.sin(p       + time * 1.10) * 0.38 +
-        Math.sin(q * 0.6 + time * 0.65) * 0.28 +
-        Math.sin((p + q) * 0.28 - time * 0.40) * 0.20 +
-        Math.sin(p * 1.4 - time * 0.85) * 0.14
-      );                 // range ≈ −1 … +1
-    }
-
-    // ── palette: t ∈ [0,1] → [R,G,B] through brand stops ───
     function palette(v) {
-      const f = v * (STOPS.length - 1);
+      const f = Math.max(0, Math.min(1, v)) * (STOPS.length - 1);
       const i = Math.min(Math.floor(f), STOPS.length - 2);
       const s = f - i;
       const a = STOPS[i], b = STOPS[i + 1];
-      return [a[0] + (b[0] - a[0]) * s,
-              a[1] + (b[1] - a[1]) * s,
-              a[2] + (b[2] - a[2]) * s];
+      return [a[0]+(b[0]-a[0])*s|0, a[1]+(b[1]-a[1])*s|0, a[2]+(b[2]-a[2])*s|0];
     }
 
-    // ── resize ───────────────────────────────────────────────
-    function resize() {
-      canvas.width  = canvas.offsetWidth  || window.innerWidth;
-      canvas.height = canvas.offsetHeight || window.innerHeight;
+    let t = 0;
+
+    // Domain warping: each layer displaces the coordinates fed into the next.
+    // This is what breaks up periodicity and creates organic fluid patterns.
+    function field(nx, ny) {
+      // Layer 1 — base displacement vectors
+      const d1x = Math.sin(nx * 3.7 + ny * 2.9 - t * 0.38) * 0.20
+                + Math.sin(nx * 1.5 - ny * 4.3 + t * 0.52) * 0.13;
+      const d1y = Math.sin(nx * 2.1 + ny * 5.3 + t * 0.44) * 0.20
+                + Math.sin(nx * 4.8 - ny * 1.7 - t * 0.30) * 0.13;
+
+      // Warped position after layer 1
+      const p2x = nx + d1x;
+      const p2y = ny + d1y;
+
+      // Layer 2 — warp the warped coords again (creates the folded, marble-like quality)
+      const d2x = Math.sin(p2x * 5.4 + p2y * 3.6 - t * 0.58) * 0.11
+                + Math.sin(p2x * 2.2 - p2y * 6.5 + t * 0.42) * 0.07;
+      const d2y = Math.sin(p2x * 4.1 + p2y * 2.8 + t * 0.48) * 0.11
+                + Math.sin(p2x * 7.3 - p2y * 1.8 - t * 0.35) * 0.07;
+
+      const fx = p2x + d2x;
+      const fy = p2y + d2y;
+
+      // Evaluate at doubly-warped position — four octaves for detail
+      return Math.sin(fx * 5.9 + fy * 3.3 - t * 0.85) * 0.38
+           + Math.sin(fx * 2.8 - fy * 6.8 + t * 0.65) * 0.28
+           + Math.sin(fx * 8.4 + fy * 1.7 + t * 1.05) * 0.20
+           + Math.sin(fx * 1.5 + fy * 9.1 - t * 0.48) * 0.14;
+      // range ≈ −1 … +1
     }
 
-    // ── render one frame ─────────────────────────────────────
     function draw() {
-      if (!alive) return;
+      const canvas = document.getElementById('ascii-bg');
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
 
+      const lw = canvas.offsetWidth, lh = canvas.offsetHeight;
+      if (lw > 0 && (canvas.width !== lw || canvas.height !== lh)) {
+        canvas.width = lw; canvas.height = lh;
+      }
       const W = canvas.width, H = canvas.height;
+      if (!W || !H) { t += 0.014; requestAnimationFrame(draw); return; }
+
       const isDark   = document.documentElement.classList.contains('dark');
-      const maxAlpha = isDark ? 0.48 : 0.22;
+      const maxAlpha = isDark ? 0.92 : 0.68;
 
       ctx.clearRect(0, 0, W, H);
       ctx.font         = FONT;
@@ -2792,41 +2818,26 @@
 
       for (let r = 0; r < rows; r++) {
         for (let c = 0; c < cols; c++) {
-          const raw = noise(c, r, t);
-          const n   = raw * 0.5 + 0.5;     // 0 … 1
+          const v = field(c / cols, r / rows) * 0.5 + 0.5;
 
-          if (n < THRESHOLD) continue;
+          if (v < 0.30) continue;
 
-          const charIdx = Math.min(Math.floor(n * (N + 1)), N);
-          const ch      = CHARS[charIdx];
-          if (ch === ' ') continue;
+          const norm  = (v - 0.30) / 0.70;
+          const alpha = Math.pow(norm, 1.5) * maxAlpha;
 
-          // Extra sparkle on hot cells (n > 0.82): brief brightness spike
-          const hot   = n > 0.82;
-          const norm  = (n - THRESHOLD) / (1 - THRESHOLD);   // re-normalised
-          const alpha = (hot ? 1.4 : 1.0) * norm * norm * maxAlpha;
-
-          const [R, G, B] = palette(hot ? 1.0 : n);
-          ctx.fillStyle = `rgba(${R|0},${G|0},${B|0},${Math.min(alpha, maxAlpha * 1.3).toFixed(3)})`;
-          ctx.fillText(ch, c * CELL_W, r * CELL_H);
+          const idx = Math.min(Math.floor(v * CHARS.length), CHARS.length - 1);
+          const [R, G, B] = palette(v);
+          ctx.fillStyle = `rgba(${R},${G},${B},${alpha.toFixed(3)})`;
+          ctx.fillText(CHARS[idx], c * CELL_W, r * CELL_H);
         }
       }
 
-      t += 0.0055;
-      raf = requestAnimationFrame(draw);
+      t += 0.014;
+      requestAnimationFrame(draw);
     }
 
-    // ── lifecycle ────────────────────────────────────────────
-    document.addEventListener('visibilitychange', () => {
-      alive = !document.hidden;
-      if (alive && !raf) draw();
-    });
-
-    const ro = new ResizeObserver(() => { resize(); });
-    ro.observe(canvas);
-
-    resize();
-    draw();
+    document.addEventListener('visibilitychange', () => { if (!document.hidden) draw(); });
+    requestAnimationFrame(draw);
   })();
   </script>
 
