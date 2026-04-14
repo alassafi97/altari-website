@@ -868,21 +868,21 @@
     .marquee-item {
       display: flex;
       align-items: center;
-      gap: .5rem;
-      font-size: var(--t-sm);
+      gap: .75rem;
+      font-size: var(--t-base);
       font-weight: 500;
       color: var(--foreground-faint);
       white-space: nowrap;
-      padding: 0 2rem;
+      padding: 0 2.5rem;
       border-right: 1px solid var(--border);
       transition: color .2s;
     }
     .marquee-item:hover { color: var(--foreground-muted); }
     .marquee-logo {
-      width: 16px; height: 16px;
-      border-radius: 3px;
+      width: 28px; height: 28px;
+      border-radius: 6px;
       object-fit: contain;
-      opacity: .65;
+      opacity: .7;
       filter: none;
       transition: opacity .2s;
       flex-shrink: 0;
@@ -2110,7 +2110,7 @@
                     <div class="agent-dot on"></div>
                     <div class="agent-info">
                       <div class="agent-name">SDR Outreach Agent</div>
-                      <div class="agent-sub"><img class="agent-tool-icon" src="../Mission%20Control/Tool%20Logos/Apollo.png" alt=""><img class="agent-tool-icon" src="../Mission%20Control/Tool%20Logos/LinkedIn.png" alt="">Processing 12 leads…</div>
+                      <div class="agent-sub"><img class="agent-tool-icon" src="logos/Apollo.png" alt=""><img class="agent-tool-icon" src="logos/LinkedIn.png" alt="">Processing 12 leads…</div>
                     </div>
                     <div class="agent-prog-wrap">
                       <div class="agent-prog-bar"><div class="agent-prog-fill"></div></div>
@@ -2121,7 +2121,7 @@
                     <div class="agent-dot on"></div>
                     <div class="agent-info">
                       <div class="agent-name">Email Triage Agent</div>
-                      <div class="agent-sub"><img class="agent-tool-icon" src="../Mission%20Control/Tool%20Logos/Gmail.png" alt="">Inbox cleared · 34 handled</div>
+                      <div class="agent-sub"><img class="agent-tool-icon" src="logos/Gmail.png" alt="">Inbox cleared · 34 handled</div>
                     </div>
                     <div class="agent-pill on">Live</div>
                   </div>
@@ -2129,7 +2129,7 @@
                     <div class="agent-dot on"></div>
                     <div class="agent-info">
                       <div class="agent-name">Lead Scorer</div>
-                      <div class="agent-sub"><img class="agent-tool-icon" src="../Mission%20Control/Tool%20Logos/Hubspot.png" alt="">Scoring inbound · HubSpot sync</div>
+                      <div class="agent-sub"><img class="agent-tool-icon" src="logos/Hubspot.png" alt="">Scoring inbound · HubSpot sync</div>
                     </div>
                     <div class="agent-pill on">Live</div>
                   </div>
@@ -2137,7 +2137,7 @@
                     <div class="agent-dot busy"></div>
                     <div class="agent-info">
                       <div class="agent-name">Proposal Generator</div>
-                      <div class="agent-sub"><img class="agent-tool-icon" src="../Mission%20Control/Tool%20Logos/Claude.png" alt="">Building draft · Acme Corp</div>
+                      <div class="agent-sub"><img class="agent-tool-icon" src="logos/Claude.png" alt="">Building draft · Acme Corp</div>
                     </div>
                     <div class="agent-pill busy">Busy</div>
                   </div>
@@ -2174,43 +2174,58 @@
     <div class="marquee-fade">
       <div style="display:flex;overflow:hidden">
         <div class="marquee-track fwd">
-          <div class="marquee-item"><img class="marquee-logo" src="../Mission%20Control/Tool%20Logos/Gmail.png" alt="Gmail"> Gmail</div>
-          <div class="marquee-item"><img class="marquee-logo" src="../Mission%20Control/Tool%20Logos/Hubspot.png" alt="HubSpot"> HubSpot</div>
-          <div class="marquee-item"><img class="marquee-logo" src="../Mission%20Control/Tool%20Logos/Slack.png" alt="Slack"> Slack</div>
-          <div class="marquee-item"><img class="marquee-logo" src="../Mission%20Control/Tool%20Logos/LinkedIn.png" alt="LinkedIn"> LinkedIn</div>
-          <div class="marquee-item"><img class="marquee-logo" src="../Mission%20Control/Tool%20Logos/Clay.png" alt="Clay"> Clay</div>
-          <div class="marquee-item"><img class="marquee-logo" src="../Mission%20Control/Tool%20Logos/Apollo.png" alt="Apollo"> Apollo</div>
-          <div class="marquee-item"><img class="marquee-logo" src="../Mission%20Control/Tool%20Logos/n8n.png" alt="n8n"> n8n</div>
-          <div class="marquee-item"><img class="marquee-logo" src="../Mission%20Control/Tool%20Logos/Instantly.png" alt="Instantly"> Instantly</div>
-          <div class="marquee-item"><img class="marquee-logo" src="../Mission%20Control/Tool%20Logos/Claude.png" alt="Claude"> Claude</div>
-          <div class="marquee-item"><img class="marquee-logo" src="../Mission%20Control/Tool%20Logos/Salesforce.png" alt="Salesforce"> Salesforce</div>
-          <div class="marquee-item"><img class="marquee-logo" src="../Mission%20Control/Tool%20Logos/Google Drive.png" alt="Google Drive"> Google Drive</div>
-          <div class="marquee-item"><img class="marquee-logo" src="../Mission%20Control/Tool%20Logos/Notion.png" alt="Notion"> Notion</div>
-          <div class="marquee-item"><img class="marquee-logo" src="../Mission%20Control/Tool%20Logos/Attio.png" alt="Attio"> Attio</div>
-          <div class="marquee-item"><img class="marquee-logo" src="../Mission%20Control/Tool%20Logos/Apify.png" alt="Apify"> Apify</div>
-          <div class="marquee-item"><img class="marquee-logo" src="../Mission%20Control/Tool%20Logos/Heyreach.png" alt="HeyReach"> HeyReach</div>
-          <div class="marquee-item"><img class="marquee-logo" src="../Mission%20Control/Tool%20Logos/Airtable.png" alt="Airtable"> Airtable</div>
-          <div class="marquee-item"><img class="marquee-logo" src="../Mission%20Control/Tool%20Logos/Supabase.png" alt="Supabase"> Supabase</div>
-          <div class="marquee-item"><img class="marquee-logo" src="../Mission%20Control/Tool%20Logos/Google Calendar.png" alt="Google Calendar"> Google Calendar</div>
+          <div class="marquee-item"><img class="marquee-logo" src="logos/Gmail.png" alt="Gmail"> Gmail</div>
+          <div class="marquee-item"><img class="marquee-logo" src="logos/Hubspot.png" alt="HubSpot"> HubSpot</div>
+          <div class="marquee-item"><img class="marquee-logo" src="logos/Slack.png" alt="Slack"> Slack</div>
+          <div class="marquee-item"><img class="marquee-logo" src="logos/LinkedIn.png" alt="LinkedIn"> LinkedIn</div>
+          <div class="marquee-item"><img class="marquee-logo" src="logos/Clay.png" alt="Clay"> Clay</div>
+          <div class="marquee-item"><img class="marquee-logo" src="logos/Apollo.png" alt="Apollo"> Apollo</div>
+          <div class="marquee-item"><img class="marquee-logo" src="logos/n8n.png" alt="n8n"> n8n</div>
+          <div class="marquee-item"><img class="marquee-logo" src="logos/Instantly.png" alt="Instantly"> Instantly</div>
+          <div class="marquee-item"><img class="marquee-logo" src="logos/Claude.png" alt="Claude"> Claude</div>
+          <div class="marquee-item"><img class="marquee-logo" src="logos/Salesforce.png" alt="Salesforce"> Salesforce</div>
+          <div class="marquee-item"><img class="marquee-logo" src="logos/Google Drive.png" alt="Google Drive"> Google Drive</div>
+          <div class="marquee-item"><img class="marquee-logo" src="logos/Notion.png" alt="Notion"> Notion</div>
+          <div class="marquee-item"><img class="marquee-logo" src="logos/Attio.png" alt="Attio"> Attio</div>
+          <div class="marquee-item"><img class="marquee-logo" src="logos/Apify.png" alt="Apify"> Apify</div>
+          <div class="marquee-item"><img class="marquee-logo" src="logos/Heyreach.png" alt="HeyReach"> HeyReach</div>
+          <div class="marquee-item"><img class="marquee-logo" src="logos/Airtable.png" alt="Airtable"> Airtable</div>
+          <div class="marquee-item"><img class="marquee-logo" src="logos/Supabase.png" alt="Supabase"> Supabase</div>
+          <div class="marquee-item"><img class="marquee-logo" src="logos/Google Calendar.png" alt="Google Calendar"> Google Calendar</div>
           <!-- duplicate for seamless loop -->
-          <div class="marquee-item"><img class="marquee-logo" src="../Mission%20Control/Tool%20Logos/Gmail.png" alt="Gmail"> Gmail</div>
-          <div class="marquee-item"><img class="marquee-logo" src="../Mission%20Control/Tool%20Logos/Hubspot.png" alt="HubSpot"> HubSpot</div>
-          <div class="marquee-item"><img class="marquee-logo" src="../Mission%20Control/Tool%20Logos/Slack.png" alt="Slack"> Slack</div>
-          <div class="marquee-item"><img class="marquee-logo" src="../Mission%20Control/Tool%20Logos/LinkedIn.png" alt="LinkedIn"> LinkedIn</div>
-          <div class="marquee-item"><img class="marquee-logo" src="../Mission%20Control/Tool%20Logos/Clay.png" alt="Clay"> Clay</div>
-          <div class="marquee-item"><img class="marquee-logo" src="../Mission%20Control/Tool%20Logos/Apollo.png" alt="Apollo"> Apollo</div>
-          <div class="marquee-item"><img class="marquee-logo" src="../Mission%20Control/Tool%20Logos/n8n.png" alt="n8n"> n8n</div>
-          <div class="marquee-item"><img class="marquee-logo" src="../Mission%20Control/Tool%20Logos/Instantly.png" alt="Instantly"> Instantly</div>
-          <div class="marquee-item"><img class="marquee-logo" src="../Mission%20Control/Tool%20Logos/Claude.png" alt="Claude"> Claude</div>
-          <div class="marquee-item"><img class="marquee-logo" src="../Mission%20Control/Tool%20Logos/Salesforce.png" alt="Salesforce"> Salesforce</div>
-          <div class="marquee-item"><img class="marquee-logo" src="../Mission%20Control/Tool%20Logos/Google Drive.png" alt="Google Drive"> Google Drive</div>
-          <div class="marquee-item"><img class="marquee-logo" src="../Mission%20Control/Tool%20Logos/Notion.png" alt="Notion"> Notion</div>
-          <div class="marquee-item"><img class="marquee-logo" src="../Mission%20Control/Tool%20Logos/Attio.png" alt="Attio"> Attio</div>
-          <div class="marquee-item"><img class="marquee-logo" src="../Mission%20Control/Tool%20Logos/Apify.png" alt="Apify"> Apify</div>
-          <div class="marquee-item"><img class="marquee-logo" src="../Mission%20Control/Tool%20Logos/Heyreach.png" alt="HeyReach"> HeyReach</div>
-          <div class="marquee-item"><img class="marquee-logo" src="../Mission%20Control/Tool%20Logos/Airtable.png" alt="Airtable"> Airtable</div>
-          <div class="marquee-item"><img class="marquee-logo" src="../Mission%20Control/Tool%20Logos/Supabase.png" alt="Supabase"> Supabase</div>
-          <div class="marquee-item"><img class="marquee-logo" src="../Mission%20Control/Tool%20Logos/Google Calendar.png" alt="Google Calendar"> Google Calendar</div>
+          <div class="marquee-item"><img class="marquee-logo" src="logos/Gmail.png" alt="Gmail"> Gmail</div>
+          <div class="marquee-item"><img class="marquee-logo" src="logos/Hubspot.png" alt="HubSpot"> HubSpot</div>
+          <div class="marquee-item"><img class="marquee-logo" src="logos/Slack.png" alt="Slack"> Slack</div>
+          <div class="marquee-item"><img class="marquee-logo" src="logos/LinkedIn.png" alt="LinkedIn"> LinkedIn</div>
+          <div class="marquee-item"><img class="marquee-logo" src="logos/Clay.png" alt="Clay"> Clay</div>
+          <div class="marquee-item"><img class="marquee-logo" src="logos/Apollo.png" alt="Apollo"> Apollo</div>
+          <div class="marquee-item"><img class="marquee-logo" src="logos/n8n.png" alt="n8n"> n8n</div>
+          <div class="marquee-item"><img class="marquee-logo" src="logos/Instantly.png" alt="Instantly"> Instantly</div>
+          <div class="marquee-item"><img class="marquee-logo" src="logos/Claude.png" alt="Claude"> Claude</div>
+          <div class="marquee-item"><img class="marquee-logo" src="logos/Salesforce.png" alt="Salesforce"> Salesforce</div>
+          <div class="marquee-item"><img class="marquee-logo" src="logos/Google Drive.png" alt="Google Drive"> Google Drive</div>
+          <div class="marquee-item"><img class="marquee-logo" src="logos/Notion.png" alt="Notion"> Notion</div>
+          <div class="marquee-item"><img class="marquee-logo" src="logos/Attio.png" alt="Attio"> Attio</div>
+          <div class="marquee-item"><img class="marquee-logo" src="logos/Apify.png" alt="Apify"> Apify</div>
+          <div class="marquee-item"><img class="marquee-logo" src="logos/Heyreach.png" alt="HeyReach"> HeyReach</div>
+          <div class="marquee-item"><img class="marquee-logo" src="logos/Airtable.png" alt="Airtable"> Airtable</div>
+          <div class="marquee-item"><img class="marquee-logo" src="logos/Supabase.png" alt="Supabase"> Supabase</div>
+          <div class="marquee-item"><img class="marquee-logo" src="logos/Google Calendar.png" alt="Google Calendar"> Google Calendar</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── CLIENT LOGOS ─────────────────────────────────────────── -->
+  <!-- Add client logo PNGs to a "Client Logos/" folder next to this file, -->
+  <!-- then swap the src paths below and remove the display:none             -->
+  <div class="marquee-section" style="padding-top:0; display:none" id="client-logos">
+    <p class="marquee-label">Trusted by forward-thinking teams</p>
+    <div class="marquee-fade">
+      <div style="display:flex;overflow:hidden">
+        <div class="marquee-track fwd" style="animation-direction:reverse;animation-duration:40s">
+          <!-- client logos go here, e.g.: -->
+          <!-- <div class="marquee-item"><img class="marquee-logo" src="../Client Logos/anago.png" alt="Anago"> Anago</div> -->
         </div>
       </div>
     </div>
