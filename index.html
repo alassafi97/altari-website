@@ -369,7 +369,7 @@
       border: 1px solid var(--border);
       transition: background .3s, border-color .3s, box-shadow .3s;
       white-space: nowrap;
-      width: clamp(280px, 90vw, 680px);
+      min-width: clamp(600px, 60vw, 800px);
     }
     #nav.scrolled {
       background: color-mix(in srgb, var(--background) 96%, transparent);
@@ -493,8 +493,11 @@
     #mobile-menu a:hover { color: var(--foreground); }
     #mobile-menu .btn { width: fit-content; margin-top: .5rem; }
 
-    @media (max-width: 480px) {
-      #nav { left: 1rem; right: 1rem; transform: none; width: auto; padding: .5rem 1rem; }
+    @media (max-width: 768px) {
+      #nav { left: 1rem; right: 1rem; transform: none; padding: .5rem 1rem; }
+      .nav-links { display: none; }
+      .nav-hamburger { display: flex; }
+      #mobile-menu { padding: 2rem 5vw; }
     }
 
     /* ─── HERO ───────────────────────────────────────────────── */
@@ -1915,6 +1918,14 @@
   <div id="cursor-spotlight"></div>
 
   <!-- ── MOBILE MENU ───────────────────────────────────────── -->
+  <div id="mobile-menu">
+    <a href="#who">Who It's For</a>
+    <a href="#process">Process</a>
+    <a href="#pricing">Pricing</a>
+    <a href="#faq">FAQ</a>
+    <a href="#cta" class="btn btn-primary">Book a Call</a>
+  </div>
+
   <!-- ── NAV ────────────────────────────────────────────────── -->
   <nav id="nav">
     <div class="nav-inner">
@@ -1949,7 +1960,36 @@
           <path class="lm" d="M30.0732 31.5171H33.7407V35.1824H30.0732V31.5171Z"/>
         </svg>
       </a>
-      <a href="#cta" class="btn btn-primary magnetic">Book a Call</a>
+      <ul class="nav-links">
+        <li><a href="#who">Who It's For</a></li>
+        <li><a href="#process">Process</a></li>
+        <li><a href="#pricing">Pricing</a></li>
+        <li><a href="#faq">FAQ</a></li>
+      </ul>
+      <div style="display:flex;align-items:center;gap:.75rem;">
+        <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">
+          <!-- Sun (shown in light mode) -->
+          <svg id="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="5"/>
+            <line x1="12" y1="1" x2="12" y2="3"/>
+            <line x1="12" y1="21" x2="12" y2="23"/>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+            <line x1="1" y1="12" x2="3" y2="12"/>
+            <line x1="21" y1="12" x2="23" y2="12"/>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+          </svg>
+          <!-- Moon (shown in dark mode) -->
+          <svg id="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/>
+          </svg>
+        </button>
+        <a href="#cta" class="btn btn-primary magnetic">Book a Call</a>
+        <button class="nav-hamburger" id="hamburger" aria-label="Menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
     </div>
   </nav>
 
@@ -2768,7 +2808,7 @@
       if (!W || !H) { t += 0.014; requestAnimationFrame(draw); return; }
 
       const isDark   = document.documentElement.classList.contains('dark');
-      const maxAlpha = isDark ? 1.0 : 0.88;
+      const maxAlpha = isDark ? 0.92 : 0.68;
 
       ctx.clearRect(0, 0, W, H);
       ctx.font         = FONT;
@@ -2781,18 +2821,7 @@
         for (let c = 0; c < cols; c++) {
           const v = field(c / cols, r / rows) * 0.5 + 0.5;
 
-          if (v < 0.30) {
-            // Wake / residue — faint dots in the troughs after a wave passes
-            // Use a slightly offset field sample so the texture is independent
-            const wake = field(c / cols + 0.12, r / rows + 0.07) * 0.5 + 0.5;
-            const wakeAlpha = Math.pow(Math.max(0, wake - 0.42) / 0.58, 2.2) * (isDark ? 0.20 : 0.12);
-            if (wakeAlpha > 0.008) {
-              const [R, G, B] = palette(0.18 + wake * 0.12);
-              ctx.fillStyle = `rgba(${R},${G},${B},${wakeAlpha.toFixed(3)})`;
-              ctx.fillText('░', c * CELL_W, r * CELL_H);
-            }
-            continue;
-          }
+          if (v < 0.30) continue;
 
           const norm  = (v - 0.30) / 0.70;
           const alpha = Math.pow(norm, 1.5) * maxAlpha;
@@ -2852,6 +2881,19 @@
       spotlightVisible = false;
     });
 
+    /* ── Mobile hamburger ─────────────────────────────────── */
+    const hamburger   = document.getElementById('hamburger');
+    const mobileMenu  = document.getElementById('mobile-menu');
+    hamburger.addEventListener('click', () => {
+      hamburger.classList.toggle('open');
+      mobileMenu.classList.toggle('open');
+    });
+    mobileMenu.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        hamburger.classList.remove('open');
+        mobileMenu.classList.remove('open');
+      });
+    });
 
     /* ── Magnetic buttons ─────────────────────────────────── */
     /* magnetic effect removed */
