@@ -932,10 +932,11 @@
     /* ─── OUTCOMES ───────────────────────────────────────────── */
     .outcomes-grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(4, 1fr);
       gap: 1.25rem;
     }
-    @media (max-width: 768px) { .outcomes-grid { grid-template-columns: 1fr; } }
+    @media (max-width: 900px) { .outcomes-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 640px) { .outcomes-grid { grid-template-columns: 1fr; } }
 
     .outcome-card {
       padding: 2.5rem;
@@ -1907,6 +1908,203 @@
     /* ─── LIGHT MODE: marquee fades ─────────────────────────── */
     html:not(.dark) .marquee-fade::before { background: linear-gradient(90deg, var(--background), transparent); }
     html:not(.dark) .marquee-fade::after  { background: linear-gradient(-90deg, var(--background), transparent); }
+    /* ─── CUSTOMER STORIES ──────────────────────────────────── */
+    #stories { padding: 7rem 0; }
+    .story-featured {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      padding: 2.5rem;
+      margin-bottom: 1.5rem;
+      align-items: start;
+    }
+    @media (max-width: 768px) { .story-featured { grid-template-columns: 1fr; } }
+    .story-client-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      font-size: var(--t-xs);
+      font-weight: 700;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: var(--accent-alt);
+      margin-bottom: 1rem;
+    }
+    .story-type {
+      font-size: var(--t-sm);
+      font-weight: 600;
+      color: var(--foreground-muted);
+      margin-bottom: .75rem;
+    }
+    .story-featured p {
+      font-size: var(--t-base);
+      line-height: 1.7;
+      color: var(--foreground-muted);
+      margin-bottom: 1.5rem;
+    }
+    .story-quote {
+      font-size: var(--t-base);
+      font-style: italic;
+      color: var(--foreground);
+      line-height: 1.65;
+      border-left: 2px solid var(--accent-alt);
+      padding-left: 1.25rem;
+      margin-bottom: 1.5rem;
+    }
+    .story-metrics {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      justify-content: center;
+    }
+    .story-metric {
+      padding: 1.5rem;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      background: color-mix(in srgb, var(--card) 60%, transparent);
+    }
+    .story-metric-num {
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Helvetica Neue", sans-serif;
+      font-size: var(--t-5xl);
+      font-weight: 700;
+      line-height: 1;
+      background: linear-gradient(135deg, var(--foreground) 50%, var(--accent-alt));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: .35rem;
+    }
+    html.dark .story-metric-num { background: linear-gradient(135deg, #fff 50%, var(--accent-alt)); -webkit-background-clip: text; background-clip: text; }
+    .story-metric-label {
+      font-size: var(--t-sm);
+      font-weight: 600;
+      margin-bottom: .2rem;
+    }
+    .story-metric-sub {
+      font-size: var(--t-xs);
+      color: var(--foreground-muted);
+    }
+    .story-mini-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.25rem;
+    }
+    @media (max-width: 640px) { .story-mini-grid { grid-template-columns: 1fr; } }
+    .story-mini-card {
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      gap: .75rem;
+    }
+    .story-mini-type {
+      font-size: var(--t-xs);
+      color: var(--foreground-muted);
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: .07em;
+    }
+    .story-mini-client {
+      font-size: var(--t-xl);
+      font-weight: 700;
+      color: var(--heading);
+    }
+    html.dark .story-mini-client { color: rgba(248,250,252,.9); }
+    .story-mini-desc {
+      font-size: var(--t-sm);
+      color: var(--foreground-muted);
+      line-height: 1.65;
+    }
+
+    /* ─── BENEFITS ───────────────────────────────────────────── */
+    #benefits { padding: 7rem 0; }
+    .benefits-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.25rem;
+    }
+    @media (max-width: 640px) { .benefits-grid { grid-template-columns: 1fr; } }
+    .benefit-card {
+      padding: 2.25rem;
+    }
+    .benefit-icon {
+      width: 2.75rem; height: 2.75rem;
+      border-radius: .65rem;
+      background: linear-gradient(135deg, color-mix(in srgb, var(--accent-alt) 15%, transparent), color-mix(in srgb, var(--accent) 8%, transparent));
+      border: 1px solid color-mix(in srgb, var(--accent-alt) 20%, var(--border));
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.2rem;
+      margin-bottom: 1.25rem;
+    }
+    .benefit-card h3 {
+      font-size: var(--t-lg);
+      font-weight: 600;
+      margin-bottom: .6rem;
+      color: var(--heading);
+    }
+    .benefit-card p {
+      font-size: var(--t-sm);
+      color: var(--foreground-muted);
+      line-height: 1.7;
+    }
+    .benefit-stat-row {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1rem;
+      margin-top: 1.25rem;
+      padding-top: 1.25rem;
+      border-top: 1px solid var(--border);
+    }
+    @media (max-width: 640px) { .benefit-stat-row { grid-template-columns: repeat(2, 1fr); } }
+    .b-stat-num {
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Helvetica Neue", sans-serif;
+      font-size: var(--t-2xl);
+      font-weight: 700;
+      color: var(--heading);
+      line-height: 1;
+    }
+    .b-stat-label {
+      font-size: var(--t-xs);
+      color: var(--foreground-muted);
+      margin-top: .2rem;
+    }
+
+    /* ─── TEAM ───────────────────────────────────────────────── */
+    #team { padding: 7rem 0; }
+    .team-grid {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      flex-wrap: wrap;
+      margin-top: 1rem;
+    }
+    .team-member {
+      padding: 2rem;
+      text-align: center;
+      width: 220px;
+      flex-shrink: 0;
+    }
+    .team-avatar {
+      width: 80px; height: 80px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent-alt), var(--accent));
+      display: flex; align-items: center; justify-content: center;
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Helvetica Neue", sans-serif;
+      font-size: var(--t-xl);
+      font-weight: 700;
+      color: #fff;
+      margin: 0 auto 1rem;
+      border: 2px solid rgba(91,94,194,.25);
+    }
+    .team-name {
+      font-size: var(--t-base);
+      font-weight: 600;
+      color: var(--heading);
+      margin-bottom: .3rem;
+    }
+    .team-role {
+      font-size: var(--t-sm);
+      color: var(--foreground-muted);
+    }
   </style>
 </head>
 <body>
@@ -2253,21 +2451,76 @@
     </div>
   </div>
 
+  <!-- ── CUSTOMER STORIES ──────────────────────────────────── -->
+  <section id="stories">
+    <div class="container">
+      <div class="s-header center reveal">
+        <span class="tag">Customer Stories</span>
+        <h2 class="s-heading">Proven Results Across Multiple Industries</h2>
+        <p class="s-sub">Our clients have automated thousands of hours, cut operational costs in half, and unlocked new growth — powered by custom AI infrastructure.</p>
+      </div>
+
+      <!-- Featured case study -->
+      <div class="card tilt-card story-featured reveal">
+        <div>
+          <div class="story-client-badge">Deel</div>
+          <div class="story-type">Lead Research Agent</div>
+          <p>Automated lead research, qualification, and assignment of 10,000+ companies – cutting weeks of manual work into hours and saving 60+ staff hours per month.</p>
+          <blockquote class="story-quote">"Lead research &amp; qualification used to manually take hours each day, and now it's done in the background – Altari has completely changed how we do this. Research quality is better too, less errors."</blockquote>
+          <div class="testimonial-author">
+            <div class="author-avatar">NR</div>
+            <div>
+              <div class="author-name">Nick Roose</div>
+              <div class="author-role">SDR Leader, APAC — Deel</div>
+            </div>
+          </div>
+        </div>
+        <div class="story-metrics">
+          <div class="story-metric">
+            <div class="story-metric-num">10K+</div>
+            <div class="story-metric-label">Leads Enriched in 24 Hours</div>
+            <div class="story-metric-sub">Previously took 4+ weeks manually</div>
+          </div>
+          <div class="story-metric">
+            <div class="story-metric-num">60+</div>
+            <div class="story-metric-label">Hours Saved per Month</div>
+            <div class="story-metric-sub">Freed sales team to focus on high-value outreach</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Mini cards -->
+      <div class="story-mini-grid">
+        <div class="card tilt-card story-mini-card reveal reveal-d1">
+          <div class="story-mini-type">AI Reception &amp; Follow-Up System</div>
+          <div class="story-mini-client">EZYE</div>
+          <div class="story-mini-desc">Automated inbound enquiries, appointment booking, and follow-up sequences — freeing the front desk entirely.</div>
+        </div>
+        <div class="card tilt-card story-mini-card reveal reveal-d2">
+          <div class="story-mini-type">Content Writing &amp; Campaign Management</div>
+          <div class="story-mini-client">Oriri</div>
+          <div class="story-mini-desc">AI-driven content production and campaign scheduling across multiple channels — at a fraction of the cost of a content team.</div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
   <div class="divider"></div>
 
-  <!-- ── WHO ────────────────────────────────────────────────── -->
+  <!-- ── SOLUTIONS ─────────────────────────────────────────── -->
   <section id="who">
     <div class="container">
       <div class="s-header reveal">
-        <span class="tag">Who it's for</span>
-        <h2 class="s-heading">Built for businesses doing $1M+ ARR.</h2>
-        <p class="s-sub">We build AI systems that automate outreach, operations, and communication — for teams serious about cutting costs and scaling without headcount.</p>
+        <span class="tag">Solutions</span>
+        <h2 class="s-heading">Popular Agentic Services</h2>
+        <p class="s-sub">We build AI systems that automate outreach, operations, and communication – from outbound sales to full workflow automation.</p>
       </div>
       <div class="who-grid reveal reveal-d1">
         <div class="who-card">
           <div class="who-icon">🎙️</div>
           <h3>Voice Agents</h3>
-          <p>Qualify leads, schedule meetings, and handle inbound calls — fully automated, no human needed.</p>
+          <p>Qualify leads, schedule meetings, and handle inbound calls – fully automated, no human needed.</p>
         </div>
         <div class="who-card">
           <div class="who-icon">⚡</div>
@@ -2277,7 +2530,7 @@
         <div class="who-card">
           <div class="who-icon">💬</div>
           <h3>Chat Agents</h3>
-          <p>Engage visitors, answer questions, and capture leads instantly — across web, CRM, or support.</p>
+          <p>Engage visitors, answer questions, and capture leads instantly – across web, CRM, or support.</p>
         </div>
         <div class="who-card">
           <div class="who-icon">🔧</div>
@@ -2285,123 +2538,53 @@
           <p>Custom AI infrastructure that learns your workflows, eliminates manual tasks, and runs 24/7.</p>
         </div>
       </div>
+      <div style="text-align:center;margin-top:2.5rem">
+        <a href="#cta" class="btn btn-primary magnetic">Book Your Free Consultation</a>
+        <p style="font-size:var(--t-xs);color:var(--foreground-muted);margin-top:1rem">600+ businesses engaged, 10,000+ people trained, with best-in-class platforms</p>
+      </div>
     </div>
   </section>
 
   <div class="divider"></div>
 
-  <!-- ── COMPARISON ────────────────────────────────────────────── -->
-  <section id="comparison">
+  <!-- ── BENEFITS ─────────────────────────────────────────── -->
+  <section id="benefits">
     <div class="container">
-      <div class="s-header center reveal">
-        <span class="tag">The smarter alternative</span>
-        <h2 class="s-heading">Not a tool. Not a hire.</h2>
-        <p class="s-sub">Most teams try three things before they get here. Here's why they get here.</p>
+      <div class="s-header reveal">
+        <span class="tag">Benefits</span>
+        <h2 class="s-heading">What you get with Altari</h2>
+        <p class="s-sub">We don't sell templates – we build AI systems that deliver real, measurable results.</p>
       </div>
-      <div class="comparison-grid reveal reveal-d1">
+      <div class="benefits-grid reveal reveal-d1">
 
-        <div class="comp-col">
-          <div class="comp-header">
-            <div class="comp-label">Option A</div>
-            <div class="comp-title">Hire an employee</div>
-            <div class="comp-price">$60–80k/year + tools</div>
-          </div>
-          <ul class="comp-items">
-            <li class="comp-item">
-              <svg class="comp-icon x" viewBox="0 0 16 16" fill="none"><path d="M4 4l8 8M12 4l-8 8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
-              Still needs managing
-            </li>
-            <li class="comp-item">
-              <svg class="comp-icon x" viewBox="0 0 16 16" fill="none"><path d="M4 4l8 8M12 4l-8 8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
-              Execution only — no systems
-            </li>
-            <li class="comp-item">
-              <svg class="comp-icon x" viewBox="0 0 16 16" fill="none"><path d="M4 4l8 8M12 4l-8 8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
-              Goes offline at 5pm
-            </li>
-            <li class="comp-item">
-              <svg class="comp-icon x" viewBox="0 0 16 16" fill="none"><path d="M4 4l8 8M12 4l-8 8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
-              Scales linearly with cost
-            </li>
-          </ul>
+        <div class="card tilt-card benefit-card">
+          <div class="benefit-icon">🛠️</div>
+          <h3>Custom-Built for You</h3>
+          <p>Every system is designed from the ground up to match your workflows and goals — not a template, not a plugin.</p>
         </div>
 
-        <div class="comp-col">
-          <div class="comp-header">
-            <div class="comp-label">Option B</div>
-            <div class="comp-title">Another SaaS tool</div>
-            <div class="comp-price">$200–500/mo + your time</div>
-          </div>
-          <ul class="comp-items">
-            <li class="comp-item">
-              <svg class="comp-icon x" viewBox="0 0 16 16" fill="none"><path d="M4 4l8 8M12 4l-8 8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
-              You do the setup yourself
-            </li>
-            <li class="comp-item">
-              <svg class="comp-icon x" viewBox="0 0 16 16" fill="none"><path d="M4 4l8 8M12 4l-8 8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
-              Adds to the tool chaos
-            </li>
-            <li class="comp-item">
-              <svg class="comp-icon x" viewBox="0 0 16 16" fill="none"><path d="M4 4l8 8M12 4l-8 8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
-              No strategy, no support
-            </li>
-            <li class="comp-item">
-              <svg class="comp-icon x" viewBox="0 0 16 16" fill="none"><path d="M4 4l8 8M12 4l-8 8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
-              Subscription forever
-            </li>
-          </ul>
+        <div class="card tilt-card benefit-card">
+          <div class="benefit-icon">🔒</div>
+          <h3>Complete Ownership</h3>
+          <p>You own the agents, data, and infrastructure — no hidden subscriptions, no vendor lock-in, ever.</p>
         </div>
 
-        <div class="comp-col">
-          <div class="comp-header">
-            <div class="comp-label">Option C</div>
-            <div class="comp-title">Generic freelancer</div>
-            <div class="comp-price">One-off + ongoing risk</div>
+        <div class="card tilt-card benefit-card">
+          <div class="benefit-icon">🔗</div>
+          <h3>Fully Integrated</h3>
+          <p>We connect directly with your CRM, inbox, and communication stack — syncing with the tools you already use.</p>
+          <div class="benefit-stat-row">
+            <div><div class="b-stat-num">634</div><div class="b-stat-label">Contacts Added</div></div>
+            <div><div class="b-stat-num">3.4×</div><div class="b-stat-label">Pipeline Coverage</div></div>
+            <div><div class="b-stat-num">24/7</div><div class="b-stat-label">Activity Logged</div></div>
+            <div><div class="b-stat-num">0</div><div class="b-stat-label">Missed Updates</div></div>
           </div>
-          <ul class="comp-items">
-            <li class="comp-item">
-              <svg class="comp-icon x" viewBox="0 0 16 16" fill="none"><path d="M4 4l8 8M12 4l-8 8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
-              One build, then gone
-            </li>
-            <li class="comp-item">
-              <svg class="comp-icon x" viewBox="0 0 16 16" fill="none"><path d="M4 4l8 8M12 4l-8 8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
-              Template, not tailored
-            </li>
-            <li class="comp-item">
-              <svg class="comp-icon x" viewBox="0 0 16 16" fill="none"><path d="M4 4l8 8M12 4l-8 8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
-              No end-to-end thinking
-            </li>
-            <li class="comp-item">
-              <svg class="comp-icon x" viewBox="0 0 16 16" fill="none"><path d="M4 4l8 8M12 4l-8 8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
-              Breaks with no support
-            </li>
-          </ul>
         </div>
 
-        <div class="comp-col altari">
-          <div class="comp-header">
-            <div class="comp-label">Altari</div>
-            <div class="comp-title">AI employees. Owned by you.</div>
-            <div class="comp-price">One-time build. Runs forever.</div>
-          </div>
-          <ul class="comp-items">
-            <li class="comp-item">
-              <svg class="comp-icon check" viewBox="0 0 16 16" fill="none"><path d="M3 8l3.5 3.5L13 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              End-to-end: strategy → build
-            </li>
-            <li class="comp-item">
-              <svg class="comp-icon check" viewBox="0 0 16 16" fill="none"><path d="M3 8l3.5 3.5L13 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              24/7 autonomous execution
-            </li>
-            <li class="comp-item">
-              <svg class="comp-icon check" viewBox="0 0 16 16" fill="none"><path d="M3 8l3.5 3.5L13 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              Full docs + team handoff
-            </li>
-            <li class="comp-item">
-              <svg class="comp-icon check" viewBox="0 0 16 16" fill="none"><path d="M3 8l3.5 3.5L13 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              Scales without headcount
-            </li>
-          </ul>
+        <div class="card tilt-card benefit-card">
+          <div class="benefit-icon">📈</div>
+          <h3>Proven Results</h3>
+          <p>Our builds generate qualified leads, save hours, and scale operations fast — with measurable ROI in the first 60 days.</p>
         </div>
 
       </div>
@@ -2495,6 +2678,11 @@
           <h3>Average ROI in First 60 Days</h3>
           <p>Measured across deployments. Most clients see full payback within 8 weeks of going live.</p>
         </div>
+        <div class="card tilt-card outcome-card reveal reveal-d4">
+          <span class="outcome-num">30</span>
+          <h3>Days to Deployment</h3>
+          <p>From discovery call to live AI infrastructure — most builds are fully deployed and running within a month.</p>
+        </div>
       </div>
     </div>
   </section>
@@ -2571,71 +2759,6 @@
 
   <div class="divider"></div>
 
-  <!-- ── PRICING ─────────────────────────────────────────────── -->
-  <section id="pricing">
-    <div class="container">
-      <div class="s-header center reveal">
-        <span class="tag">Pricing</span>
-        <h2 class="s-heading">One-time build. Permanent leverage.</h2>
-        <p class="s-sub">No subscriptions. No seat licenses. You own the system we build.</p>
-      </div>
-      <div class="pricing-grid">
-
-        <div class="card tilt-card pricing-card reveal reveal-d1">
-          <div class="pricing-tier">Starter</div>
-          <div class="pricing-price">$8–15k</div>
-          <p class="pricing-desc">One workflow or department. Perfect for validating ROI before scaling across the business.</p>
-          <div class="p-divider"></div>
-          <ul class="pricing-features">
-            <li><svg class="check" viewBox="0 0 16 16" fill="none"><path d="M3 8l3.5 3.5L13 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Single department AI deployment</li>
-            <li><svg class="check" viewBox="0 0 16 16" fill="none"><path d="M3 8l3.5 3.5L13 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Up to 3 AI agent configurations</li>
-            <li><svg class="check" viewBox="0 0 16 16" fill="none"><path d="M3 8l3.5 3.5L13 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Core integrations (email, CRM, calendar)</li>
-            <li><svg class="check" viewBox="0 0 16 16" fill="none"><path d="M3 8l3.5 3.5L13 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Management dashboard</li>
-            <li><svg class="check" viewBox="0 0 16 16" fill="none"><path d="M3 8l3.5 3.5L13 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Full documentation + walkthrough</li>
-            <li><svg class="check" viewBox="0 0 16 16" fill="none"><path d="M3 8l3.5 3.5L13 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>14-day post-deployment support</li>
-          </ul>
-          <a href="#cta" class="btn btn-secondary" style="width:100%">Book a Call</a>
-        </div>
-
-        <div class="card tilt-card pricing-card featured reveal reveal-d2">
-          <div class="featured-badge">Most Popular</div>
-          <div class="pricing-tier">Scale</div>
-          <div class="pricing-price">$15–30k</div>
-          <p class="pricing-desc">AI operations across multiple teams with cross-department orchestration and unified oversight.</p>
-          <div class="p-divider"></div>
-          <ul class="pricing-features">
-            <li><svg class="check" viewBox="0 0 16 16" fill="none"><path d="M3 8l3.5 3.5L13 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Everything in Starter</li>
-            <li><svg class="check" viewBox="0 0 16 16" fill="none"><path d="M3 8l3.5 3.5L13 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Multi-department deployment</li>
-            <li><svg class="check" viewBox="0 0 16 16" fill="none"><path d="M3 8l3.5 3.5L13 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Cross-department workflow orchestration</li>
-            <li><svg class="check" viewBox="0 0 16 16" fill="none"><path d="M3 8l3.5 3.5L13 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Role-based permissions + access control</li>
-            <li><svg class="check" viewBox="0 0 16 16" fill="none"><path d="M3 8l3.5 3.5L13 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Employee assignment dashboard</li>
-            <li><svg class="check" viewBox="0 0 16 16" fill="none"><path d="M3 8l3.5 3.5L13 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>30-day post-deployment support</li>
-          </ul>
-          <a href="#cta" class="btn btn-primary" style="width:100%">Book a Call</a>
-        </div>
-
-        <div class="card tilt-card pricing-card reveal reveal-d3">
-          <div class="pricing-tier">Enterprise</div>
-          <div class="pricing-price">$30k+</div>
-          <p class="pricing-desc">Full AI workforce buildout. Custom architecture, on-site options, and dedicated ongoing support.</p>
-          <div class="p-divider"></div>
-          <ul class="pricing-features">
-            <li><svg class="check" viewBox="0 0 16 16" fill="none"><path d="M3 8l3.5 3.5L13 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Everything in Scale</li>
-            <li><svg class="check" viewBox="0 0 16 16" fill="none"><path d="M3 8l3.5 3.5L13 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Custom agent architecture</li>
-            <li><svg class="check" viewBox="0 0 16 16" fill="none"><path d="M3 8l3.5 3.5L13 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>On-site or air-gapped deployment</li>
-            <li><svg class="check" viewBox="0 0 16 16" fill="none"><path d="M3 8l3.5 3.5L13 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Network-level security configuration</li>
-            <li><svg class="check" viewBox="0 0 16 16" fill="none"><path d="M3 8l3.5 3.5L13 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>In-person team training</li>
-            <li><svg class="check" viewBox="0 0 16 16" fill="none"><path d="M3 8l3.5 3.5L13 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>60-day post-deployment support</li>
-          </ul>
-          <a href="#cta" class="btn btn-secondary" style="width:100%">Book a Call</a>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <div class="divider"></div>
-
   <!-- ── FAQ ────────────────────────────────────────────────── -->
   <section id="faq">
     <div class="container">
@@ -2647,46 +2770,104 @@
 
         <div class="faq-item reveal">
           <button class="faq-q">
-            We already use ChatGPT — how is this different?
-            <span class="faq-icon">
-              <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M5 1v8M1 5h8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
-            </span>
+            What exactly is a "Custom AI Agent"?
+            <span class="faq-icon"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M5 1v8M1 5h8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
           </button>
-          <div class="faq-a">ChatGPT answers questions. An AI employee executes tasks across your email, CRM, calendar, and 50+ integrations — 24/7, without human prompting. It doesn't wait to be asked. It does the work. They're complementary, not competing.</div>
+          <div class="faq-a">A custom AI agent is software built specifically for your business that executes tasks autonomously — researching leads, triaging emails, scheduling meetings, updating your CRM — without human prompting. Unlike a chatbot, it works across your systems 24/7 and integrates with the tools you already use.</div>
         </div>
 
         <div class="faq-item reveal reveal-d1">
           <button class="faq-q">
-            Can't I just hire a freelancer for a fraction of the cost?
+            How fast can I have one running in my business?
             <span class="faq-icon"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M5 1v8M1 5h8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
           </button>
-          <div class="faq-a">You can. Clients who've tried it report the freelancer delivered something that worked on day one and broke on day 30 — with no documentation and no one to call. What Altari builds is business infrastructure: scoped architecture, tested integrations, full documentation, and post-deployment support. Different product entirely.</div>
+          <div class="faq-a">Most Starter builds are handed off within 2–3 weeks of signing. Scale deployments run 4–6 weeks. We've had clients go live in under 10 days for single-workflow builds.</div>
         </div>
 
         <div class="faq-item reveal reveal-d2">
           <button class="faq-q">
-            What happens after the support period ends?
+            How much time or money can this realistically save me?
             <span class="faq-icon"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M5 1v8M1 5h8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
           </button>
-          <div class="faq-a">You own the system. It runs independently. The documentation we deliver is comprehensive enough for your team to maintain, troubleshoot, and extend. Monthly retainer arrangements are available if you want ongoing managed support — but the system doesn't stop when our period ends.</div>
+          <div class="faq-a">Across active clients, we've eliminated $1.2M+ in annual costs and freed 60+ hours per client per month. Most businesses see full ROI within 60 days of going live.</div>
         </div>
 
         <div class="faq-item reveal reveal-d3">
           <button class="faq-q">
-            How long does a full deployment take?
+            Can an AI agent actually generate new revenue?
             <span class="faq-icon"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M5 1v8M1 5h8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
           </button>
-          <div class="faq-a">Starter builds typically take 2–3 weeks from signed contract to handoff. Scale deployments run 4–6 weeks. Enterprise timelines are scoped per project during discovery.</div>
+          <div class="faq-a">Yes. Clients using our Sales Agents have doubled pipeline in 60 days. A properly built outbound agent runs research, writes personalised messages, and follows up — generating meetings without headcount.</div>
         </div>
 
         <div class="faq-item reveal reveal-d4">
           <button class="faq-q">
+            What industries does this work for?
+            <span class="faq-icon"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M5 1v8M1 5h8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
+          </button>
+          <div class="faq-a">Any industry where workflows are repetitive and data-driven: recruitment, financial services, real estate, SaaS, agencies, professional services, and more. If your team is doing it manually, we can automate it.</div>
+        </div>
+
+        <div class="faq-item reveal">
+          <button class="faq-q">
+            Do I need to be "tech-savvy" to use this?
+            <span class="faq-icon"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M5 1v8M1 5h8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
+          </button>
+          <div class="faq-a">No. We handle everything — architecture, build, integrations, testing, and deployment. You get a dashboard and full documentation. Your team doesn't need to touch any code.</div>
+        </div>
+
+        <div class="faq-item reveal reveal-d1">
+          <button class="faq-q">
+            How is this different from a chatbot or virtual assistant?
+            <span class="faq-icon"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M5 1v8M1 5h8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
+          </button>
+          <div class="faq-a">A chatbot answers questions when prompted. An AI agent executes tasks across your email, CRM, calendar, and 50+ integrations — 24/7, without human prompting. It doesn't wait to be asked. It does the work.</div>
+        </div>
+
+        <div class="faq-item reveal reveal-d2">
+          <button class="faq-q">
+            What tools or platforms does it connect with?
+            <span class="faq-icon"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M5 1v8M1 5h8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
+          </button>
+          <div class="faq-a">HubSpot, Salesforce, Gmail, Slack, LinkedIn, Apollo, Clay, Instantly, Notion, Airtable, Google Drive, and 50+ more. If it has an API, we can integrate it.</div>
+        </div>
+
+        <div class="faq-item reveal reveal-d3">
+          <button class="faq-q">
             Is my data safe?
             <span class="faq-icon"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M5 1v8M1 5h8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
           </button>
-          <div class="faq-a">Every deployment includes containerised infrastructure, strict API scoping, and a documented security policy. For Enterprise clients we walk your security team through the full architecture on the discovery call. Air-gapped deployments with zero cloud dependency are available.</div>
+          <div class="faq-a">Every deployment includes containerised infrastructure, strict API scoping, and a documented security policy. Enterprise clients get a full security walkthrough on the discovery call. Air-gapped deployments with zero cloud dependency are available.</div>
         </div>
 
+        <div class="faq-item reveal reveal-d4">
+          <button class="faq-q">
+            How do I get started?
+            <span class="faq-icon"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M5 1v8M1 5h8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
+          </button>
+          <div class="faq-a">Book a free 30-minute strategy call. We'll map out where AI can create the biggest wins for your business and outline a scoped build plan — with no obligation.</div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ── TEAM ──────────────────────────────────────────────── -->
+  <section id="team">
+    <div class="container">
+      <div class="s-header center reveal">
+        <span class="tag">Who We Are</span>
+        <h2 class="s-heading">Meet The Team</h2>
+        <p class="s-sub">Altari was founded by operators who've built, tested, and deployed AI agents with hundreds of businesses before creating our own systems.</p>
+      </div>
+      <div class="team-grid">
+        <div class="card team-member reveal reveal-d1">
+          <div class="team-avatar">AA</div>
+          <div class="team-name">Ahmed Alassafi</div>
+          <div class="team-role">Founder &amp; CEO</div>
+        </div>
       </div>
     </div>
   </section>
@@ -2819,7 +3000,7 @@
       if (!W || !H) { t += 0.014; requestAnimationFrame(draw); return; }
 
       const isDark   = document.documentElement.classList.contains('dark');
-      const maxAlpha = isDark ? 0.92 : 0.68;
+      const maxAlpha = isDark ? 0.42 : 0.30;
 
       ctx.clearRect(0, 0, W, H);
       ctx.font         = FONT;
